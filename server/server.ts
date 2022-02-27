@@ -47,4 +47,4 @@ const start = async (): Promise<void> => {
 };
 start();
 
-app.listen(3000);
+
