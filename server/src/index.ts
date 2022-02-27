@@ -2,7 +2,14 @@ import Fastify from 'fastify';
 import mercurius from 'mercurius';
 import mercuriusAuth from 'mercurius-auth';
 
+
 import { schema, resolvers, context } from './server';
+
+type PromiseType<T> = T extends PromiseLike<infer U> ? U : T
+
+declare module 'mercurius' {
+  interface MercuriusContext extends PromiseType<ReturnType<typeof context>> {}
+}
 
 const app = Fastify();
 
@@ -32,10 +39,6 @@ app.register(mercuriusAuth, {
   // authDirective: 'auth'
 });
 
-app.get('/', async function (req: any, reply: any) {
-  const query = '{ add(x: 2, y: 2) }';
-  return reply.graphql(query);
-});
 
 const port = process.env.PORT || 3000;
 

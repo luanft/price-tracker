@@ -3,7 +3,7 @@
     "prisma-gen": "yarn prisma generate && yarn prisma db push",
     "prisma-migrate": "yarn prisma migrate dev --name init",
     "db": "docker-compose up db",
-    "dev": "yarn db | yarn prisma-gen | nodemon index.ts"
+    "dev": "yarn db | yarn prisma-gen | nodemon src/index.ts"
   },
   "dependencies": {
     "@prisma/client": "^3.10.0",

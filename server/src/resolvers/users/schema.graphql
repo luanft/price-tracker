@@ -1,0 +1,22 @@
+enum Role {
+  ADMIN
+  REVIEWER
+  USER
+  UNKNOWN
+}
+
+directive @auth(requires: Role = ADMIN) on OBJECT | FIELD_DEFINITION
+
+type User {
+  id: Int
+  name: String
+  email: String
+}
+
+type Mutation {
+  createUser(name: String!, email: String!): User!
+}
+
+type Query {
+  users: [User]!
+}
