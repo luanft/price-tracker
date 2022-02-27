@@ -24,6 +24,7 @@ app.register(mercurius, {
   schema,
   resolvers,
   graphiql: true,
+  subscription: true,
 });
 
 app.get('/', async function (req: any, reply: any) {
@@ -36,8 +37,8 @@ const port = process.env.PORT || 3000;
 const start = async (): Promise<void> => {
   try {
     await app.listen(port, '0.0.0.0');
-    console.log(`Server is running at http://localhost:${port}`);
-    console.log(`Listening on port ${port} 🚀`);
+    console.log('\n App is running at:');
+    console.log(` - Local: http://localhost:${port} 🚀`);
   } catch (err) {
     app.log.error(err);
     process.exit(1);
