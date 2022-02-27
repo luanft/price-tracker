@@ -9,9 +9,14 @@ const schema = `
   }
 `;
 
+interface Add {
+  x: any;
+  y: any;
+}
+
 const resolvers = {
   Query: {
-    add: async (_, { x, y }) => x + y,
+    add: async (_: any, { x, y }: Add) => x + y,
   },
 };
 
@@ -21,9 +26,23 @@ app.register(mercurius, {
   graphiql: true,
 });
 
-app.get('/', async function (req, reply) {
+app.get('/', async function (req: any, reply: any) {
   const query = '{ add(x: 2, y: 2) }';
   return reply.graphql(query);
 });
+
+const port = process.env.PORT || 3000;
+
+const start = async (): Promise<void> => {
+  try {
+    await app.listen(port, '0.0.0.0');
+    console.log(`Server is running at http://localhost:${port}`);
+    console.log(`Listening on port ${port} 🚀`);
+  } catch (err) {
+    app.log.error(err);
+    process.exit(1);
+  }
+};
+start();
 
 app.listen(3000);
