@@ -39,6 +39,7 @@ const start = async (): Promise<void> => {
     await app.listen(port, '0.0.0.0');
     console.log('\n App is running at:');
     console.log(` - Local: http://localhost:${port} 🚀`);
+    console.log(` - Playground: http://localhost:${port}/graphiql 🚀`);
   } catch (err) {
     app.log.error(err);
     process.exit(1);
