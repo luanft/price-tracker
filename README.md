@@ -1,5 +1,8 @@
 # price-tracker
 
+Environment required for development:
+  Docker: https://www.docker.com/
+
 Quick Start:
   Server:
     Setup:
