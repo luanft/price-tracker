@@ -1,50 +1,61 @@
-const Fastify = require('fastify');
-const mercurius = require('mercurius');
-
-const app = Fastify();
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
 const schema = `
+  directive @auth(
+    requires: Role = ADMIN,
+  ) on OBJECT | FIELD_DEFINITION
+
+  enum Role {
+    ADMIN
+    REVIEWER
+    USER
+    UNKNOWN
+  }
+
+  type User {
+    id: Int
+    name: String
+    email: String
+  }
+
+  type Mutation {
+    createUser(name: String!, email: String!): User!
+  }
+
   type Query {
-    add(x: Int, y: Int): Int
+    users: [User]!
   }
 `;
 
-interface Add {
-  x: any;
-  y: any;
+interface User {
+  id: Number;
+  name: String;
+  email: String;
 }
 
 const resolvers = {
   Query: {
-    add: async (_: any, { x, y }: Add) => x + y,
+    users: async (_: any, args: any, { prisma }: any) => {
+      return await prisma.user.findMany();
+    },
+  },
+
+  Mutation: {
+    createUser: async (_: any, {name, email }: User, { prisma }: any) => {
+      return await prisma.user.create({
+        data: {
+          name,
+          email,
+        },
+      });
+    },
   },
 };
 
-app.register(mercurius, {
-  schema,
-  resolvers,
-  graphiql: true,
-  subscription: true,
-});
-
-app.get('/', async function (req: any, reply: any) {
-  const query = '{ add(x: 2, y: 2) }';
-  return reply.graphql(query);
-});
-
-const port = process.env.PORT || 3000;
-
-const start = async (): Promise<void> => {
-  try {
-    await app.listen(port, '0.0.0.0');
-    console.log('\n App is running at:');
-    console.log(` - Local: http://localhost:${port} 🚀`);
-    console.log(` - Playground: http://localhost:${port}/graphiql 🚀`);
-  } catch (err) {
-    app.log.error(err);
-    process.exit(1);
-  }
+const context = (request: any, reply: any) => {
+  return { prisma };
 };
-start();
 
-
+export { schema, resolvers, context };
+export default { schema, resolvers, context };

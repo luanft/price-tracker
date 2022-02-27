@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "server-setup": "cd server && yarn",
     "server-dev": "cd server && yarn dev"
   }
 }

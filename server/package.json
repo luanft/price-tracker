@@ -1,14 +1,19 @@
 {
   "scripts": {
-    "dev": "nodemon server.ts"
+    "prisma-gen": "yarn prisma generate && yarn prisma db push",
+    "db": "docker-compose up db",
+    "dev": "yarn db | yarn prisma-gen | nodemon index.ts"
   },
   "dependencies": {
+    "@prisma/client": "^3.10.0",
     "fastify": "^3.27.2",
     "graphql": "^16.3.0",
-    "mercurius": "^9.3.3"
+    "mercurius": "^9.3.3",
+    "mercurius-auth": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",
+    "prisma": "^3.10.0",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
   }
