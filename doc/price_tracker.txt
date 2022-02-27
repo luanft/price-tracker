@@ -4,22 +4,22 @@
 2. Price tracker
  2.1: Support to add/remove a product url to/from the monitoring list
  2.2: Support to define/change regex extraction pattern of a website(for crawler)
-  + Support to export the paterns to excel?
+  + Support to export the patterns to excel?
   + Dependencies injection
- 2.3: Support to notify user if the price is droping.
+ 2.3: Support to notify user if the price is dropping.
  2.4: Pin/unpin a website on the top
  2.5: Get all the monitoring products.
  2.6: Get detail price/history for a product url.
- 2.7: Group price by product(we can add many site for the same product. support this feature for pricing comparision)
+ 2.7: Group price by product(we can add many site for the same product. support this feature for pricing comparasion)
 
 3. Crawler:
 * For each the url from 2.1, use the pattern from 2.2.
 	extract the price from the the given urls
 
 - Specify how many workers for the crawler
-- How to bypass the ddos protection of server
+- How to bypass the DDOS protection of server
 - when we need to re-collect the price for product(by hour/day/week?)
-- There is many techical issue we need to resolve.(* client rendering webiste)
+- There is many technical issue we need to resolve.(* client rendering website)
 
 
 
@@ -28,6 +28,7 @@ Technologies:
 Database:
 + MongoDB: Flexible but not easy to find the free hosting
 + Mysql: easily to find the free hosting
++ PostgesQL: ...
 
 Queue:
 https://openbase.com/js/kue: most downloads
@@ -43,11 +44,14 @@ Crawler: x-path, css selector, pure regex?
 
 API:
 https://expressjs.com/
+https://www.fastify.io/ - fastify (replacement for express)
+https://www.prisma.io/docs/concepts/components/prisma-client - ORM
+https://mercurius.dev/#/ - API Service Layer
 GraphQL?
 RestAPI?
 
 UI:
-+ react
++ react - typescripts
 + vite bundler
 
 Linux cmd:
