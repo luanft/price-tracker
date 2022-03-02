@@ -3,7 +3,13 @@
 #### Environment required for development:
   * Docker: https://www.docker.com/
 #### Quick Start:
+  Docker:
+    docker build --tag price_tracker .
+    docker run --name docker-node -p 3000:8080 -d price_tracker
+    
   * Server:
+    * Init:
+      yarn prisma migrate dev —name init
     * Setup:
       * run: "**yarn server-setup**" or "**cd server** && **yarn**"
     * Start Development:

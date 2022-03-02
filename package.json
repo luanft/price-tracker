@@ -1,6 +1,9 @@
 {
   "scripts": {
     "server-setup": "cd server && yarn",
-    "server-dev": "cd server && yarn dev"
+    "server-dev": "pwd & ls -al & cd server && yarn dev"
+  },
+  "devDependencies": {
+    "prisma": "^3.10.0"
   }
 }

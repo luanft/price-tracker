@@ -10,6 +10,4 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: price-tracker
       POSTGRES_HOST_AUTH_METHOD: trust
-    volumes:
-      - './db/data:/var/lib/postgres/data'
-      - './db/init:/docker-entrypoint-initdb.d'
+  
